@@ -1,0 +1,4 @@
+/Users/davidzachariah/Desktop/Zachariah_CS53-002_Project3/build/CMakeFiles/sentiment.dir
+/Users/davidzachariah/Desktop/Zachariah_CS53-002_Project3/build/CMakeFiles/tests.dir
+/Users/davidzachariah/Desktop/Zachariah_CS53-002_Project3/build/CMakeFiles/edit_cache.dir
+/Users/davidzachariah/Desktop/Zachariah_CS53-002_Project3/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,18 @@
+Lines one through three from test_data.txt:
+
+id,Date,Query,User,Tweet
+2002781955,Tue Jun 02 05:08:46 PDT 2009,NO_QUERY,S810uk,Sitting in the office forced to look at the sunshine from my window  At least I have a window to stare through. Only 2 wks to my run :-&amp;
+1678880603,Sat May 02 07:58:22 PDT 2009,NO_QUERY,Chockley,Doing absolutely nothing alll weekend. How fun. 
+
+Lines one through three from test_dataset_sentiment_10k:
+
+Sentiment,id
+0,2002781955
+4,1678880603
+
+Lines one through three from train_dataset_20k:
+
+Sentiment,id,Date,Query,User,Tweet
+4,2014351367,Wed Jun 03 01:14:33 PDT 2009,NO_QUERY,cathyleehart,@just_tam21 hahah its kind of the same as adelaides except a bit bigger 
+4,1984531826,Sun May 31 15:17:28 PDT 2009,NO_QUERY,carlawaslike,@Austinjamest sweeeet can't wait to go there with you guys when i get back! 
+

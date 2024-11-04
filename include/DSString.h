@@ -41,4 +41,19 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const DSString& str);
 };
 
+namespace std {
+    template <>
+    struct hash<DSString> {
+        size_t operator()(const DSString& str) const {
+            size_t hash = 5381;
+            const char* ptr = str.c_str();
+            while (*ptr) {
+                hash = ((hash << 5) + hash) + (*ptr); // hash * 33 + c
+                ptr++;
+            }
+            return hash;
+        }
+    };
+}
+
 #endif 

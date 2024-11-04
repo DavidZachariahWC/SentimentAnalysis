@@ -1,0 +1,213 @@
+Project Outline for "Don't Be Sentimental!"
+
+This outline provides a step-by-step plan to complete the sentiment analysis project as described. It breaks down the tasks into manageable components, ensuring all requirements are met without delving into code specifics.
+
+1. Project Setup
+a. Initialize Git Repository
+Create a new GitHub repository for the project.
+Clone the repository locally to begin development.
+Commit a .gitignore file tailored for C++ projects to exclude unnecessary files.
+b. Set Up Project Structure
+Create directories for:
+src/ for source code files.
+include/ for header files.
+data/ for dataset files (training, testing, sentiment).
+tests/ for unit tests.
+docs/ for documentation (UML diagrams, reports).
+Add a basic README.md outlining the project.
+c. Configure Build System
+Set up a CMakeLists.txt file to manage the build process.
+Ensure that CMake copies the data/ folder to the build/ directory during the build process.
+Commit the initial project structure to GitHub.
+2. Implement DSString Class
+a. Create DSString Header and Source Files
+Add include/DSString.h with the provided class specification.
+Add src/DSString.cpp for the class implementation.
+b. Implement Required Functions
+Overload necessary operators (=, +, ==, >, <, [], <<).
+Implement constructors, destructor, and len attribute.
+Follow the Rule of Three: implement copy constructor, copy assignment operator, and destructor.
+c. Avoid Disallowed Functions
+Do not use C-string functions from <cstring> within DSString methods.
+Manipulate the character array manually.
+d. Write Unit Tests for DSString
+Add test cases in tests/ to verify each DSString method.
+Ensure edge cases are handled (empty strings, out-of-bounds indices).
+e. Commit DSString Implementation
+Regularly commit progress to GitHub with meaningful commit messages.
+3. Design Class Structure
+a. Create UML Diagram
+Use a tool (e.g., Lucidchart, draw.io) to create a UML diagram.
+Identify classes:
+SentimentClassifier
+Tweet
+Word or Vocabulary
+Define attributes and methods for each class.
+b. Plan Class Interactions
+Determine how classes will interact (e.g., SentimentClassifier uses Tweet objects).
+Decide on data structures for storing tweets and word frequencies.
+c. Commit UML Diagram
+Save the UML diagram in docs/ and commit to GitHub.
+4. Implement SentimentClassifier Class
+a. Create Class Files
+Add include/SentimentClassifier.h and src/SentimentClassifier.cpp.
+b. Implement Core Methods
+train(const std::string& trainingDataFile)
+Read training data.
+Tokenize tweets into words.
+Build frequency counts of words associated with positive and negative sentiments.
+predict(const std::string& testDataFile, const std::string& resultsFile)
+Read test data.
+Tokenize tweets.
+Predict sentiment using the trained model.
+Write predictions to resultsFile.
+evaluatePredictions(const std::string& groundTruthFile, const std::string& resultsFile, const std::string& accuracyFile)
+Compare predictions with ground truth.
+Calculate accuracy.
+Identify and log misclassified tweets to accuracyFile.
+c. Use Appropriate Data Structures
+Utilize STL containers (e.g., std::unordered_map for word frequencies).
+Store tweets in a std::vector of Tweet objects.
+d. Commit Initial Implementation
+Regularly commit changes, documenting the implementation of each method.
+5. Implement File I/O Operations
+a. Reading Training Data
+Implement a method to read and parse the training CSV file.
+Convert read strings to DSString objects.
+b. Reading Testing Data
+Implement a method to read test tweets.
+Read the testing sentiment file for ground truth comparison.
+c. Writing Output Files
+Write classifier results to the specified results file in the correct format.
+Write accuracy and misclassified tweets to the accuracy file.
+d. Error Handling and Validation
+Add checks for file existence and correct format.
+Handle exceptions and provide user-friendly error messages.
+e. Commit File I/O Implementation
+Ensure file operations are robust and commit progress.
+6. Implement Tokenization Process
+a. Choose Tokenizer Method
+Decide between using strtok() or std::stringstream.
+Documentation Requirement: Write a half-page document explaining how the chosen tokenizer works.
+b. Implement Tokenizer Function
+Create a function to split a DSString tweet into individual words.
+Handle punctuation, special characters, and case normalization.
+c. Integrate Tokenizer
+Use the tokenizer in both train() and predict() methods.
+Exclude tokens that are not words (e.g., links, mentions).
+d. Commit Tokenizer Implementation
+Include the documentation in docs/ and commit both code and documentation.
+7. Develop Classification Algorithm
+a. Define Classification Strategy
+Decide on using word frequency counts to determine sentiment.
+Words frequent in positive tweets get positive scores and vice versa.
+b. Implement Training Logic
+Update the model in train() to count word occurrences per sentiment.
+Use appropriate data structures to store counts (e.g., nested std::unordered_map).
+c. Implement Prediction Logic
+For each test tweet, sum the sentiment scores of the words.
+Assign the tweet the sentiment with the higher cumulative score.
+d. Optimize Performance
+Identify bottlenecks and optimize data access patterns.
+Consider the time complexity of lookups and updates.
+e. Comment and Document Algorithm
+Add comments explaining how the classification works.
+Ensure the explanation meets the project requirements.
+f. Commit Classification Implementation
+Regularly commit changes with detailed messages.
+8. Enhance Classifier Accuracy
+(Optional for Bonus Points)
+
+a. Implement Stop Words Removal
+Create a list of common stop words.
+Exclude stop words during the tokenization process.
+b. Implement Word Stemming
+Research and integrate a stemming library (e.g., Porter Stemmer).
+Handle conversion between DSString and std::string if necessary.
+c. Update Model to Use Stemming
+Modify train() and predict() to use stemmed words.
+Recalculate word frequencies based on stems.
+d. Test and Evaluate Improvements
+Measure the impact on accuracy.
+Ensure changes do not introduce errors.
+e. Commit Enhancements
+Document the changes and commit to GitHub.
+9. Implement Command-Line Interface
+a. Parse Command-Line Arguments
+Update main() to accept and validate five arguments:
+Training data set filename.
+Testing data set filename.
+Testing data set sentiment filename.
+Classifier results file name.
+Classifier accuracy and errors file name.
+b. Provide Usage Instructions
+Display helpful messages when incorrect arguments are provided.
+Include examples of correct usage.
+c. Integrate with SentimentClassifier
+Pass the arguments to the appropriate methods.
+Ensure file paths are correctly handled.
+d. Commit CLI Implementation
+Test with various argument combinations and commit.
+10. Test and Debug the Application
+a. Test with Small Data Sets
+Use a subset of the data (e.g., 100 tweets) for initial testing.
+Verify that the training and prediction processes work correctly.
+b. Detect and Fix Memory Leaks
+Use tools like Valgrind to identify memory issues.
+Ensure all dynamically allocated memory is properly managed.
+c. Validate Accuracy Calculation
+Manually verify the accuracy calculation with known data.
+Ensure the accuracy meets the minimum required threshold (60%).
+d. Identify and Resolve Bugs
+Debug any incorrect classifications or crashes.
+Refactor code as necessary for clarity and efficiency.
+e. Commit Testing Results
+Document testing procedures and results.
+Commit any bug fixes with explanatory messages.
+11. Optimize Runtime Performance
+a. Analyze Time Complexity
+Evaluate the time complexity of key operations.
+Determine dependencies (number of tweets, words, data structure sizes).
+b. Optimize Data Structures
+Replace less efficient structures with more optimal ones (e.g., use std::unordered_map instead of std::vector for lookups).
+c. Parallel Processing (Advanced)
+Consider multithreading for processing tweets if appropriate.
+d. Profile the Application
+Use profiling tools to identify slow sections of code.
+Optimize code hotspots.
+e. Commit Performance Improvements
+Document changes made for optimization.
+Ensure that functionality remains correct.
+12. Finalize Code and Documentation
+a. Code Review
+Review all code for adherence to coding standards.
+Ensure variable names are meaningful and consistent.
+b. Add Comments and Documentation
+Comment on complex code sections.
+Ensure that each function and class has a clear description.
+c. Compile Without Warnings
+Adjust compiler settings to show all warnings.
+Resolve any warnings to achieve a clean build.
+d. Prepare Documentation
+Compile all required documentation:
+Half-page explanation of the tokenizer.
+Comments explaining how the classifier works.
+Analysis of runtime complexity.
+Place documentation in the docs/ directory.
+e. Commit Final Changes
+Ensure that the final version is committed with a descriptive message.
+13. Prepare for Submission
+a. Verify Program Functionality
+Test the program with the full dataset.
+Ensure output files are correctly generated and formatted.
+b. Achieve Required Accuracy
+Confirm that the classifier meets or exceeds 60% accuracy.
+Aim for 72% or higher for bonus points.
+c. Ensure Compliance with Requirements
+Double-check that all project requirements are met.
+Verify that no disallowed functions or libraries are used.
+d. Create Submission Package
+If required, prepare a ZIP file or other package format.
+Include all necessary files (excluding those in .gitignore).
+e. Submit According to Guidelines
+Follow any submission instructions provided (e.g., through a learning management system).

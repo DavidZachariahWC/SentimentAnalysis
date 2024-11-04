@@ -1,0 +1,13 @@
+sentiment/
+├── CMakeLists.txt
+├── src/
+│   ├── main.cpp
+│   ├── DSString.cpp
+│   └── SentimentClassifier.cpp
+├── include/
+│   ├── DSString.h
+│   └── SentimentClassifier.h
+├── tests/
+│   └── DSStringTest.cpp
+└── docs/
+    └── UML.md 

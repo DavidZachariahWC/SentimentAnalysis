@@ -5,11 +5,12 @@
 #include <vector>
 #include <unordered_map>
 
+// Represents a tweet with its metadata and sentiment (0=negative, 4=positive)
 class Tweet {
 private:
     DSString id;
     DSString text;
-    int sentiment;  // 0 for negative, 4 for positive
+    int sentiment;
 
 public:
     Tweet(const DSString& id, const DSString& text, int sentiment = -1);
@@ -19,13 +20,16 @@ public:
     void setSentiment(int s) { sentiment = s; }
 };
 
+// Analyzes tweet sentiment using word frequency analysis
+// Training: O(N * W), Prediction: O(W), Space: O(V)
+// where N = tweets, W = words per tweet, V = vocabulary size
 class SentimentClassifier {
 private:
-    // Word frequency maps for positive and negative sentiments
+    // Word frequency maps for sentiment analysis
     std::unordered_map<DSString, int> positiveWords;
     std::unordered_map<DSString, int> negativeWords;
     
-    // Helper functions
+    // Core text processing functions
     std::vector<DSString> tokenize(const DSString& text);
     void updateWordFrequency(const DSString& word, bool isPositive);
     int predictSentiment(const DSString& text);
@@ -34,7 +38,7 @@ private:
 public:
     SentimentClassifier() = default;
     
-    // Core functionality
+    // Main classifier operations
     void train(const DSString& trainingFile);
     void predict(const DSString& testFile, const DSString& predictionsFile);
     void evaluatePredictions(const DSString& groundTruthFile, 

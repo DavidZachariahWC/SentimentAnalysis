@@ -2,24 +2,24 @@
 #include <iostream>
 
 /**
- * @brief Main entry point for sentiment analysis program
+ * @brief Entry function for sentiment analysis application
  * 
- * Processes command line arguments and runs the sentiment classifier
- * through its training, prediction, and evaluation phases.
+ * This function processes the command line arguments and executes the sentiment classifier's
+ * tasks including training, making predictions, and assessing accuracy.
  * 
- * Expected arguments:
- * 1. Training data file path
- * 2. Test data file path
- * 3. Test sentiment file path
- * 4. Predictions output file path
- * 5. Accuracy output file path
+ * Expected command line arguments:
+ * 1. Path to the training data file
+ * 2. Path to the test data file
+ * 3. Path to the file containing test sentiment labels
+ * 4. Path where the prediction results will be saved
+ * 5. Path where the accuracy results will be saved
  * 
- * @param argc Number of command line arguments
- * @param argv Array of command line arguments
- * @return 0 on success, 1 on error
+ * @param argc The count of command line arguments
+ * @param argv Array containing the command line arguments
+ * @return 0 for successful execution, 1 for errors
  */
 int main(int argc, char** argv) {
-    // Validate command line arguments
+    // Check if the correct number of arguments are provided
     if (argc != 6) {
         std::cerr << "Usage: " << argv[0] << " <training_file> <test_file> <test_sentiment_file> "
                   << "<predictions_file> <accuracy_file>" << std::endl;
@@ -29,24 +29,24 @@ int main(int argc, char** argv) {
     try {
         SentimentClassifier classifier;
         
-        // Train the classifier on labeled data
-        std::cout << "Training classifier..." << std::endl;
+        // Train the sentiment classifier using the provided training data
+        std::cout << "Training the classifier..." << std::endl;
         classifier.train(argv[1]);
         
-        // Make predictions on test data
-        std::cout << "Making predictions..." << std::endl;
+        // Generate predictions using the test data
+        std::cout << "Generating predictions..." << std::endl;
         classifier.predict(argv[2], argv[4]);
         
-        // Evaluate prediction accuracy
-        std::cout << "Evaluating results..." << std::endl;
+        // Assess the accuracy of the predictions
+        std::cout << "Assessing the results..." << std::endl;
         classifier.evaluatePredictions(argv[3], argv[4], argv[5]);
         
-        std::cout << "Classification complete! Check " << argv[5] << " for results." << std::endl;
+        std::cout << "Sentiment classification completed! Results saved in " << argv[5] << "." << std::endl;
     }
     catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        std::cerr << "An error occurred: " << e.what() << std::endl;
         return 1;
     }
     
     return 0;
-} 
+}
